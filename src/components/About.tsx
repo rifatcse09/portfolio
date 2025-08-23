@@ -3,16 +3,16 @@ import { Badge } from "@/components/ui/badge";
 
 const About = () => {
   const skills = [
-    "React", "TypeScript", "Node.js", "Python", "Next.js",
-    "PostgreSQL", "MongoDB", "AWS", "Docker", "GraphQL",
-    "Tailwind CSS", "Redux", "Express.js", "Vue.js", "Git"
+    "PHP", "Laravel", "JavaScript", "TypeScript", "Node.js", "Vue.js", "Vue 3",
+    "Nest.js", "Express.js", "MySQL", "PostgreSQL", "Docker", "AWS", "Git",
+    "Tailwind CSS", "Bootstrap", "REST API", "WebSocket", "Microservices", "CI/CD"
   ];
 
   const stats = [
-    { number: "50+", label: "Projects Completed" },
-    { number: "3+", label: "Years Experience" },
-    { number: "25+", label: "Happy Clients" },
-    { number: "100%", label: "Client Satisfaction" },
+    { number: "11+", label: "Years Experience" },
+    { number: "Sr.", label: "Software Engineer" },
+    { number: "JoulesLabs", label: "Current Company" },
+    { number: "Multiple", label: "Domains Expertise" },
   ];
 
   return (
@@ -24,8 +24,8 @@ const About = () => {
               About <span className="gradient-text">Me</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Passionate full-stack developer with expertise in modern web technologies, 
-              dedicated to creating exceptional digital experiences that solve real-world problems.
+              As a polyglot developer, I excel in backend development, specializing in PHP and Laravel, 
+              with proficiency in Node.js and JavaScript for frontend work. Passionate about Programming, Cloud and DevOps.
             </p>
           </div>
 
@@ -33,14 +33,14 @@ const About = () => {
             <div className="space-y-6">
               <h3 className="text-2xl font-bold">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Started my journey in web development 3 years ago, driven by curiosity and passion 
-                for technology. Since then, I've worked with startups and established companies, 
-                building scalable applications that serve thousands of users.
+                With over 11 years of experience in web development, I've specialized in PHP frameworks 
+                and JavaScript technologies. Currently working as Sr. Software Engineer at JoulesLabs, 
+                I've contributed to diverse projects across various domains and industries.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                I specialize in creating full-stack applications using modern frameworks and 
-                best practices. My approach combines technical expertise with user-centered 
-                design to deliver solutions that are both powerful and intuitive.
+                I'm particularly adept at system design, leveraging my skills to architect scalable solutions. 
+                My expertise spans from monolithic to microservices architecture, with a keen interest in 
+                exploring trendy technologies and implementing best practices in DevOps and cloud solutions.
               </p>
             </div>
 

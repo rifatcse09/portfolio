@@ -22,14 +22,14 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="text-white">Building Digital</span>
+            <span className="text-white">Hi 👋 I'm</span>
             <br />
-            <span className="gradient-text">Experiences</span>
+            <span className="gradient-text">Rifatul Islam</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Full-stack developer crafting innovative web applications with modern technologies
-            and user-centered design principles.
+            Sr. Software Engineer at JoulesLabs. Passionate about Programming, Cloud and DevOps.
+            Polyglot developer specializing in PHP, Laravel, Vue.js, and modern web technologies.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">

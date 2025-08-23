@@ -9,19 +9,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      description: "alex.developer@email.com",
-      action: "mailto:alex.developer@email.com"
+      description: "Contact via GitHub",
+      action: "https://github.com/rifatcse09"
     },
     {
       icon: Phone,
-      title: "Phone",
-      description: "+1 (555) 123-4567",
-      action: "tel:+15551234567"
+      title: "LinkedIn",
+      description: "in/rifatcse09",
+      action: "https://www.linkedin.com/in/rifatcse09/"
     },
     {
       icon: MapPin,
       title: "Location",
-      description: "San Francisco, CA",
+      description: "Dhaka, Bangladesh",
       action: "#"
     }
   ];
@@ -46,10 +46,9 @@ const Contact = () => {
               <div>
                 <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
                 <p className="text-muted-foreground leading-relaxed mb-8">
-                  I'm always interested in new opportunities and exciting projects. 
-                  Whether you're a startup looking to build your first product or 
-                  an established company seeking to enhance your digital presence, 
-                  I'd love to hear from you.
+                  Currently working as Sr. Software Engineer at JoulesLabs. I'm passionate about 
+                  building scalable web applications and exploring new technologies. Feel free to 
+                  connect with me for collaboration opportunities or technical discussions.
                 </p>
               </div>
 
@@ -73,23 +72,23 @@ const Contact = () => {
               </div>
 
               <div className="pt-8">
-                <h4 className="font-semibold mb-4">Why Work With Me?</h4>
+                <h4 className="font-semibold mb-4">What I Bring to the Table:</h4>
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full" />
-                    Clear communication throughout the project
+                    11+ years of professional experience
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full" />
-                    Timely delivery and transparent progress updates
+                    Expertise in system design and architecture
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full" />
-                    Post-launch support and maintenance
+                    Polyglot developer (PHP, Laravel, Vue.js, Node.js)
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full" />
-                    Focus on scalable, maintainable solutions
+                    DevOps and cloud technologies expertise
                   </li>
                 </ul>
               </div>

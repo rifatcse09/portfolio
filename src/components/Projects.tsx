@@ -10,57 +10,57 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "Modern full-stack e-commerce solution with real-time inventory management, secure payments, and admin dashboard.",
+      title: "MultiMesh",
+      description: "A sophisticated multi-vendor e-commerce platform built with modern PHP architecture and advanced features for scalable online marketplace solutions.",
       image: project1,
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis"],
+      technologies: ["PHP", "Laravel", "Vue.js", "PostgreSQL", "Docker"],
       features: [
-        "Real-time inventory tracking",
-        "Secure payment processing",
-        "Admin dashboard with analytics",
-        "Mobile-responsive design"
+        "Multi-vendor marketplace functionality",
+        "Advanced product management system",
+        "Real-time order tracking",
+        "Comprehensive admin dashboard"
       ],
-      challenges: "Handling high concurrent users during flash sales while maintaining data consistency.",
-      solution: "Implemented Redis caching and database optimization techniques, resulting in 40% faster load times.",
-      liveUrl: "#",
-      githubUrl: "#",
+      challenges: "Building a scalable multi-vendor system that can handle complex vendor relationships and inventory management.",
+      solution: "Implemented microservices architecture with Laravel and optimized database queries for better performance.",
+      liveUrl: "https://github.com/rifatcse09/MultiMesh",
+      githubUrl: "https://github.com/rifatcse09/MultiMesh",
       category: "Full-Stack"
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "Collaborative project management tool with real-time updates, team chat, and advanced filtering capabilities.",
+      title: "Lead Management System",
+      description: "Comprehensive CRM solution for managing leads, customer interactions, and sales pipeline with Vue.js frontend and robust backend API.",
       image: project2,
-      technologies: ["Vue.js", "Express.js", "MongoDB", "Socket.io", "AWS"],
+      technologies: ["Vue.js", "PHP", "Laravel", "MySQL", "REST API"],
       features: [
-        "Real-time collaboration",
-        "Advanced task filtering",
-        "Team chat integration",
-        "File sharing capabilities"
+        "Advanced lead tracking and scoring",
+        "Customer interaction history",
+        "Sales pipeline visualization",
+        "Automated follow-up reminders"
       ],
-      challenges: "Ensuring real-time synchronization across multiple users without conflicts.",
-      solution: "Built custom conflict resolution system using operational transformation principles.",
-      liveUrl: "#",
-      githubUrl: "#",
+      challenges: "Creating an intuitive user interface while managing complex lead data relationships and workflows.",
+      solution: "Developed modular Vue.js components with efficient state management and optimized API endpoints.",
+      liveUrl: "https://github.com/rifatcse09/lead_management",
+      githubUrl: "https://github.com/rifatcse09/lead_management",
       category: "Full-Stack"
     },
     {
       id: 3,
-      title: "Analytics Dashboard",
-      description: "Data visualization platform with interactive charts, custom reports, and real-time data processing.",
+      title: "Custom eCommerce Platform",
+      description: "Tailored e-commerce solution with modern web technologies, focusing on performance optimization and user experience.",
       image: project3,
-      technologies: ["React", "D3.js", "Python", "FastAPI", "PostgreSQL"],
+      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
       features: [
-        "Interactive data visualizations",
-        "Custom report generation",
-        "Real-time data processing",
-        "Export capabilities"
+        "Custom shopping cart functionality",
+        "Payment gateway integration",
+        "Inventory management system",
+        "Responsive design implementation"
       ],
-      challenges: "Processing and visualizing large datasets without performance degradation.",
-      solution: "Implemented data pagination and lazy loading with efficient database indexing.",
-      liveUrl: "#",
-      githubUrl: "#",
-      category: "Frontend"
+      challenges: "Building a custom e-commerce platform from scratch while ensuring security and performance standards.",
+      solution: "Implemented clean code architecture with proper security measures and performance optimization techniques.",
+      liveUrl: "https://github.com/rifatcse09/custom-eCommerce",
+      githubUrl: "https://github.com/rifatcse09/custom-eCommerce",
+      category: "Full-Stack"
     }
   ];
 
@@ -73,8 +73,8 @@ const Projects = () => {
               Featured <span className="gradient-text">Projects</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Detailed case studies showcasing my approach to problem-solving, 
-              technical implementation, and the impact of each solution.
+              Real projects from my GitHub repository showcasing my expertise in 
+              full-stack development, system architecture, and modern web technologies.
             </p>
           </div>
 
@@ -137,13 +137,17 @@ const Projects = () => {
                       </div>
 
                       <div className="flex gap-4">
-                        <Button variant="gradient" size="sm">
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
+                        <Button variant="gradient" size="sm" asChild>
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            View Project
+                          </a>
                         </Button>
-                        <Button variant="outline" size="sm">
-                          <Github className="mr-2 h-4 w-4" />
-                          Source Code
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                            <Github className="mr-2 h-4 w-4" />
+                            Source Code
+                          </a>
                         </Button>
                       </div>
                     </CardContent>
