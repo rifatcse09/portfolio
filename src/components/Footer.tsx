@@ -8,7 +8,7 @@ const Footer = () => {
     { icon: Github, href: "#", label: "GitHub" },
     { icon: Linkedin, href: "#", label: "LinkedIn" },
     { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Mail, href: "mailto:alex.developer@email.com", label: "Email" },
+    { icon: Mail, href: "mailto:rifatcse09@gmail.com", label: "Email" },
   ];
 
   const footerLinks = [
@@ -50,7 +50,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="font-bold text-2xl mb-4">
-              <span className="gradient-text">Alex.dev</span>
+              <span className="gradient-text">Rifatul</span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
               Full-stack developer passionate about creating innovative web applications 
@@ -95,7 +95,7 @@ const Footer = () => {
 
         <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © {currentYear} Alex.dev. All rights reserved.
+            © {currentYear} mdrifatul.info. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm">
             Built with React, TypeScript & Tailwind CSS

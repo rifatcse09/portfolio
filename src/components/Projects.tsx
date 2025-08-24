@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
-import project1 from "@/assets/project1.jpg";
+import project1 from "@/assets/project1.png";
 import project2 from "@/assets/project2.jpg";
 import project3 from "@/assets/project3.jpg";
 
@@ -10,7 +10,7 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "MultiMesh",
+      title: "Multi-Vendor E-Commerce Platform",
       description: "A sophisticated multi-vendor e-commerce platform built with modern PHP architecture and advanced features for scalable online marketplace solutions.",
       image: project1,
       technologies: ["PHP", "Laravel", "Vue.js", "PostgreSQL", "Docker"],
@@ -22,8 +22,8 @@ const Projects = () => {
       ],
       challenges: "Building a scalable multi-vendor system that can handle complex vendor relationships and inventory management.",
       solution: "Implemented microservices architecture with Laravel and optimized database queries for better performance.",
-      liveUrl: "https://github.com/rifatcse09/MultiMesh",
-      githubUrl: "https://github.com/rifatcse09/MultiMesh",
+      liveUrl: "https://wibazaar.com/",
+      githubUrl: "",
       category: "Full-Stack"
     },
     {

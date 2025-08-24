@@ -47,7 +47,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="font-bold text-xl">
-            <span className="gradient-text">Alex.dev</span>
+            <span className="gradient-text">mdrifatul.info</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -56,7 +56,11 @@ const Navigation = () => {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-portfolio-primary transition-colors font-medium"
+                className={`transition-colors font-medium ${
+                  isScrolled 
+                    ? "text-black hover:text-portfolio-primary" 
+                    : "text-white hover:text-portfolio-primary"
+                }`}
               >
                 {item.label}
               </button>
@@ -85,7 +89,11 @@ const Navigation = () => {
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-4 py-2 text-foreground hover:text-portfolio-primary transition-colors font-medium"
+                  className={`block w-full text-left px-4 py-2 transition-colors font-medium ${
+                    isScrolled 
+                      ? "text-black hover:text-portfolio-primary" 
+                      : "text-white hover:text-portfolio-primary"
+                  }`}
                 >
                   {item.label}
                 </button>

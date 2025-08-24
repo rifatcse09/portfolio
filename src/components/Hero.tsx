@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, FileText } from "lucide-react";
 import heroImage from "@/assets/hero-bg.jpg";
+import { motion } from "framer-motion";
+import resumePDF from "@/assets/Rifatul_fullstack_10+exp.pdf";
 
 const Hero = () => {
   return (
@@ -24,13 +26,17 @@ const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="text-white">Hi 👋 I'm</span>
             <br />
-            <span className="gradient-text">Rifatul Islam</span>
+            <span className="gradient-text">MD Rifatul Islam</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Sr. Software Engineer at JoulesLabs. Passionate about Programming, Cloud and DevOps.
-            Polyglot developer specializing in PHP, Laravel, Vue.js, and modern web technologies.
-          </p>
+          <motion.p
+            className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            Senior Software Engineer | PHP • Laravel • Vue.js  • Node.js | Cloud & DevOps Enthusiast
+          </motion.p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
             <Button variant="hero" size="lg" className="group">
@@ -39,12 +45,33 @@ const Hero = () => {
             </Button>
             
             <div className="flex gap-4">
-              <Button variant="glow" size="icon" className="rounded-full">
-                <Github className="h-5 w-5" />
-              </Button>
-              <Button variant="glow" size="icon" className="rounded-full">
-                <Linkedin className="h-5 w-5" />
-              </Button>
+              <a 
+                href="https://github.com/rifatcse09" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button variant="glow" size="icon" className="rounded-full">
+                  <Github className="h-5 w-5" />
+                </Button>
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/rifatcse09/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button variant="glow" size="icon" className="rounded-full">
+                  <Linkedin className="h-5 w-5" />
+                </Button>
+              </a>
+              <a 
+                href={resumePDF} 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button variant="glow" size="icon" className="rounded-full">
+                  <FileText className="h-5 w-5" />
+                </Button>
+              </a>
               <Button variant="glow" size="icon" className="rounded-full">
                 <Mail className="h-5 w-5" />
               </Button>

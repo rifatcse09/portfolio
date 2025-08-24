@@ -1,26 +1,28 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
+import mazharAvatar from "@/assets/mazhar.jpeg";
+import koji from "@/assets/koji.jpeg";
 
 const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      position: "Product Manager",
-      company: "TechStart Inc.",
-      avatar: "",
+      name: "Mazhar Ahmed",
+      position: "CTO",
+      company: "atB Jobs",
+      avatar: mazharAvatar,
       rating: 5,
-      text: "Working with Alex was exceptional. The e-commerce platform exceeded our expectations with its performance and user experience. The attention to detail and technical expertise really showed in the final product."
+      text: "We have worked together. Rifatul Islam is a hard working, problem solving team player. He took lead in many projects and solved crucial technical issues. He is always ready to dive into new technology / skills. He can complete his task in proper due time. He is responsible, attentive and always respectful to others. He communicates with his team to archive the outcome of the projects. I will look forward to work with him and pray for his bright future."
     },
     {
       id: 2,
-      name: "Michael Chen",
-      position: "CTO",
-      company: "DataFlow Solutions",
-      avatar: "",
+      name: "KJ(koji) iinuma",
+      position: "CEO",
+      company: "TheBEATS(US) & KJ Commons(JP)",
+      avatar: koji,
       rating: 5,
-      text: "The analytics dashboard Alex built transformed how we visualize our data. The real-time processing capabilities and intuitive interface have significantly improved our decision-making process."
+      text: "He is very passionate to meet the requirements of schedule and quality always. I'm really happy to work with him."
     },
     {
       id: 3,
@@ -29,7 +31,7 @@ const Testimonials = () => {
       company: "CollabSpace",
       avatar: "",
       rating: 5,
-      text: "Alex delivered our project management tool ahead of schedule and within budget. The real-time collaboration features work flawlessly, and our team productivity has increased by 30% since implementation."
+      text: "Rifat delivered our project management tool ahead of schedule and within budget. The real-time collaboration features work flawlessly, and our team productivity has increased by 30% since implementation."
     },
     {
       id: 4,
@@ -38,7 +40,7 @@ const Testimonials = () => {
       company: "GrowthCorp",
       avatar: "",
       rating: 5,
-      text: "Excellent communication throughout the project. Alex took the time to understand our business needs and delivered a solution that perfectly aligned with our goals. Highly recommended!"
+      text: "Excellent communication throughout the project. Rifat took the time to understand our business needs and delivered a solution that perfectly aligned with our goals. Highly recommended!"
     }
   ];
 

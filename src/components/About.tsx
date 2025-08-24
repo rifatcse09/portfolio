@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import myImage from "@/assets/my.png";
 
 const About = () => {
   const skills = [
@@ -11,7 +12,7 @@ const About = () => {
   const stats = [
     { number: "11+", label: "Years Experience" },
     { number: "Sr.", label: "Software Engineer" },
-    { number: "JoulesLabs", label: "Current Company" },
+    { number: "Adventure Dhaka", label: "Current Company" },
     { number: "Multiple", label: "Domains Expertise" },
   ];
 
@@ -34,7 +35,7 @@ const About = () => {
               <h3 className="text-2xl font-bold">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed">
                 With over 11 years of experience in web development, I've specialized in PHP frameworks 
-                and JavaScript technologies. Currently working as Sr. Software Engineer at JoulesLabs, 
+                and JavaScript technologies. Currently working as Sr. Software Engineer at Adventure Dhaka, 
                 I've contributed to diverse projects across various domains and industries.
               </p>
               <p className="text-muted-foreground leading-relaxed">
@@ -44,19 +45,12 @@ const About = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
-                <Card key={index} className="card-hover text-center p-6">
-                  <CardContent className="p-0">
-                    <div className="text-3xl font-bold gradient-text mb-2">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {stat.label}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="relative">
+              <img 
+                src={myImage} 
+                alt="About Me" 
+                className="rounded-lg shadow-lg w-full h-auto object-cover"
+              />
             </div>
           </div>
 

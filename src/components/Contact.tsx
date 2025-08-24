@@ -26,6 +26,19 @@ const Contact = () => {
     }
   ];
 
+  const handleSendEmail = () => {
+    const firstName = (document.getElementById("firstName") as HTMLInputElement).value;
+    const lastName = (document.getElementById("lastName") as HTMLInputElement).value;
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const subject = (document.getElementById("subject") as HTMLInputElement).value;
+    const message = (document.getElementById("message") as HTMLTextAreaElement).value;
+
+    const mailtoLink = `mailto:rifatcse09@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      `Name: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`
+    )}`;
+    window.location.href = mailtoLink;
+  };
+
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-6">
@@ -103,33 +116,34 @@ const Contact = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium">First Name</label>
-                    <Input placeholder="John" />
+                    <Input id="firstName" placeholder="John" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Last Name</label>
-                    <Input placeholder="Doe" />
+                    <Input id="lastName" placeholder="Doe" />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Email</label>
-                  <Input type="email" placeholder="john@example.com" />
+                  <Input id="email" type="email" placeholder="john@example.com" />
                 </div>
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Subject</label>
-                  <Input placeholder="Project Discussion" />
+                  <Input id="subject" placeholder="Project Discussion" />
                 </div>
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Message</label>
                   <Textarea 
+                    id="message"
                     placeholder="Tell me about your project..."
                     className="min-h-32 resize-none"
                   />
                 </div>
                 
-                <Button variant="gradient" className="w-full">
+                <Button variant="gradient" className="w-full" onClick={handleSendEmail}>
                   <Send className="mr-2 h-4 w-4" />
                   Send Message
                 </Button>
