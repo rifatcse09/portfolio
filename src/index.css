@@ -38,20 +38,28 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
 
-    /* Portfolio Design System */
-    --portfolio-primary: 217 91% 60%;
+    /* Portfolio Design System - Colorful & Professional */
+    --portfolio-primary: 222 84% 58%;
+    --portfolio-secondary: 254 76% 64%;
+    --portfolio-accent: 166 72% 38%;
+    --portfolio-warm: 193 85% 45%;
+    --portfolio-cool: 199 92% 48%;
     --portfolio-primary-foreground: 210 40% 98%;
-    --portfolio-secondary: 263 85% 70%;
-    --portfolio-accent: 210 40% 96.1%;
     --portfolio-accent-foreground: 222.2 47.4% 11.2%;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--portfolio-primary)), hsl(var(--portfolio-secondary)));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--portfolio-accent)));
+    /* Gradients - Richer, more vibrant */
+    --gradient-primary: linear-gradient(135deg, hsl(222 84% 58%), hsl(254 76% 64%));
+    --gradient-warm: linear-gradient(135deg, hsl(193 85% 45%), hsl(166 72% 38%));
+    --gradient-cool: linear-gradient(135deg, hsl(199 92% 48%), hsl(166 72% 38%));
+    --gradient-hero: linear-gradient(135deg, hsl(222 84% 58%) 0%, hsl(254 76% 64%) 52%, hsl(199 92% 48%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(210 40% 98%), hsl(220 14% 96%));
+    --gradient-section-warm: linear-gradient(180deg, hsl(30 100% 98%), hsl(0 0% 100%));
+    --gradient-section-cool: linear-gradient(180deg, hsl(210 40% 98%), hsl(220 14% 96%));
     
-    /* Shadows */
-    --shadow-elegant: 0 10px 30px -10px hsl(var(--portfolio-primary) / 0.3);
-    --shadow-glow: 0 0 40px hsl(var(--portfolio-primary) / 0.15);
+    /* Shadows - Colored for depth */
+    --shadow-elegant: 0 10px 40px -15px hsl(var(--portfolio-primary) / 0.35);
+    --shadow-glow: 0 0 50px hsl(var(--portfolio-primary) / 0.2);
+    --shadow-card: 0 4px 20px -4px hsl(222 84% 58% / 0.16);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,8 +112,8 @@ All colors MUST be HSL.
     --ring: 212.7 26.8% 83.9%;
 
     /* Portfolio Dark Mode */
-    --portfolio-primary: 217 91% 60%;
-    --portfolio-secondary: 263 85% 70%;
+    --portfolio-primary: 220 90% 66%;
+    --portfolio-secondary: 253 90% 72%;
     --gradient-primary: linear-gradient(135deg, hsl(var(--portfolio-primary)), hsl(var(--portfolio-secondary)));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(217.2 32.6% 17.5%));
     --shadow-elegant: 0 10px 30px -10px hsl(var(--portfolio-primary) / 0.4);
@@ -128,6 +136,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -144,17 +153,49 @@ All colors MUST be HSL.
     background-clip: text;
   }
 
+  .gradient-text-warm {
+    background: var(--gradient-warm);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .gradient-bg {
     background: var(--gradient-primary);
   }
 
+  .gradient-bg-hero {
+    background: var(--gradient-hero);
+  }
+
+  .section-header {
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 60%;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+  }
+
   .card-hover {
     transition: var(--transition-smooth);
+    box-shadow: var(--shadow-card);
   }
 
   .card-hover:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-elegant);
+  }
+
+  .card-hover:hover .card-hover-image {
+    transform: scale(1.05);
   }
 
   .glow-effect {
@@ -171,5 +212,111 @@ All colors MUST be HSL.
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: xor;
     pointer-events: none;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: hsl(var(--background));
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: var(--gradient-primary);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    z-index: -1;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .badge-skill {
+    background: linear-gradient(135deg, hsl(221 83% 53% / 0.08), hsl(262 83% 58% / 0.08));
+    border: 1px solid hsl(221 83% 53% / 0.2);
+  }
+
+  .badge-skill:hover {
+    background: linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%));
+    color: white;
+    border-color: transparent;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--portfolio-primary) / 0.15), hsl(var(--portfolio-secondary) / 0.15), transparent);
+    margin: 0 auto;
+    max-width: 80%;
+  }
+
+  .glass-panel {
+    background: linear-gradient(135deg, hsl(var(--background) / 0.58), hsl(var(--background) / 0.38));
+    border: 1px solid hsl(var(--border) / 0.7);
+    box-shadow: 0 16px 40px -24px hsl(var(--portfolio-primary) / 0.35);
+    backdrop-filter: blur(14px);
+  }
+
+  .modern-surface {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .modern-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background: radial-gradient(100% 120% at 10% 0%, hsl(var(--portfolio-primary) / 0.14), transparent 60%);
+  }
+
+  .modern-surface:hover::before {
+    opacity: 1;
+  }
+
+  .hover-lift-soft {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.25s ease;
+  }
+
+  .hover-lift-soft:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 38px -24px hsl(var(--portfolio-primary) / 0.4);
+  }
+
+  .animated-border {
+    position: relative;
+  }
+
+  .animated-border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid transparent;
+    background: linear-gradient(120deg, hsl(var(--portfolio-primary) / 0.45), hsl(var(--portfolio-secondary) / 0.35), transparent) border-box;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .section-noise {
+    position: relative;
+  }
+
+  .section-noise::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    background-image: radial-gradient(hsl(var(--foreground) / 0.5) 0.45px, transparent 0.45px);
+    background-size: 4px 4px;
+    mix-blend-mode: soft-light;
   }
 }

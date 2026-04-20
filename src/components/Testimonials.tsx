@@ -1,8 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import mazharAvatar from "@/assets/mazhar.jpeg";
 import koji from "@/assets/koji.jpeg";
+import { ScrollReveal } from "./ScrollReveal";
+import { motion } from "framer-motion";
 
 const Testimonials = () => {
   const testimonials = [
@@ -45,60 +47,75 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-subtle">
-      <div className="container mx-auto px-6">
+    <section id="testimonials" className="section-noise py-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(262 83% 58% / 0.03) 0%, hsl(221 83% 53% / 0.05) 50%, hsl(0 0% 100%) 100%)' }}>
+      <div className="absolute top-20 left-0 w-72 h-72 bg-portfolio-secondary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-portfolio-warm/8 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-6 relative">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <ScrollReveal className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 section-header">
               Client <span className="gradient-text">Testimonials</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               What clients say about working with me and the impact of our collaborations
             </p>
-          </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card 
-                key={testimonial.id} 
-                className="card-hover p-6 relative overflow-hidden"
-                style={{ animationDelay: `${index * 0.1}s` }}
+              <motion.div
+                key={testimonial.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <CardContent className="p-0">
-                  {/* Rating Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
+                <Card
+                  className="card-hover p-6 relative overflow-hidden group h-full border-portfolio-secondary/10 glass-panel modern-surface hover-lift-soft animated-border"
+                >
+                  <CardContent className="p-0">
+                    <motion.div whileHover={{ rotate: -8, scale: 1.05 }} transition={{ duration: 0.25 }}>
+                      <Quote className="absolute top-4 right-4 w-12 h-12 text-portfolio-primary/10 group-hover:text-portfolio-primary/20 transition-colors" />
+                    </motion.div>
 
-                  {/* Testimonial Text */}
-                  <blockquote className="text-muted-foreground leading-relaxed mb-6">
-                    "{testimonial.text}"
-                  </blockquote>
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.1 + i * 0.05 }}
+                        >
+                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        </motion.div>
+                      ))}
+                    </div>
 
-                  {/* Client Info */}
-                  <div className="flex items-center gap-4">
-                    <Avatar className="border-2 border-portfolio-primary/20">
-                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                      <AvatarFallback className="bg-portfolio-primary/10 text-portfolio-primary font-semibold">
-                        {testimonial.name.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-semibold">{testimonial.name}</div>
-                      <div className="text-sm text-muted-foreground">
-                        {testimonial.position} at {testimonial.company}
+                    <blockquote className="text-muted-foreground leading-relaxed mb-6 relative z-10">
+                      "{testimonial.text}"
+                    </blockquote>
+
+                    <div className="flex items-center gap-4">
+                      <motion.div whileHover={{ scale: 1.1 }}>
+                        <Avatar className="border-2 border-portfolio-primary/20 h-12 w-12">
+                          <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                          <AvatarFallback className="bg-portfolio-primary/10 text-portfolio-primary font-semibold">
+                            {testimonial.name.split(' ').map(n => n[0]).join('')}
+                          </AvatarFallback>
+                        </Avatar>
+                      </motion.div>
+                      <div>
+                        <div className="font-semibold">{testimonial.name}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {testimonial.position} at {testimonial.company}
+                        </div>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Decorative Element */}
-                  <div className="absolute top-4 right-4 opacity-10">
-                    <div className="text-6xl font-bold text-portfolio-primary">"</div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
