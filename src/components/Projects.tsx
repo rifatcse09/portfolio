@@ -27,6 +27,21 @@ import storeFlowMapping from "@/assets/store-flow/data-mapping.png";
 import storeFlowCondition from "@/assets/store-flow/condition.png";
 import kitchenflowMain from "@/assets/kitchenflow-main.png";
 import agenticRagMain from "@/assets/agentic-rag-main.png";
+import smsDashboard from "@/assets/sms-platform/dashboard.png";
+import smsCampaigns from "@/assets/sms-platform/campaigns.png";
+import smsBrands from "@/assets/sms-platform/brands.png";
+import smsAudienceTag from "@/assets/sms-platform/audience-tag.png";
+import smsCreateCampaign from "@/assets/sms-platform/create-campaign.png";
+import smsScheduleCampaign from "@/assets/sms-platform/schedule-campaign.png";
+import smsAnalytics from "@/assets/sms-platform/analytics.png";
+import smsSettings from "@/assets/sms-platform/settings.png";
+import gomDashboard from "@/assets/gom/dashboard.png";
+import gomLogin from "@/assets/gom/login.png";
+import gomOrderList from "@/assets/gom/order-list.png";
+import gomPurchaseSettle from "@/assets/gom/purchase-settle.png";
+import gomBillingStatements from "@/assets/gom/billing-statements.png";
+import gomFinancialLedger from "@/assets/gom/financial-ledger.png";
+import gomCategoryList from "@/assets/gom/category-list.png";
 import { ScrollReveal } from "./ScrollReveal";
 import { motion } from "framer-motion";
 
@@ -40,8 +55,8 @@ type Project = {
   features: string[];
   challenges: string;
   solution: string;
-  liveUrl: string;
-  githubUrl?: string;
+    liveUrl?: string;
+    githubUrl?: string;
   githubBackendUrl?: string;
   githubFrontendUrl?: string;
   category: "Full-Stack" | "Backend";
@@ -228,7 +243,95 @@ const projects: Project[] = [
     category: "Full-Stack",
     track: "AI & Automation",
     role: "Agentic AI engineer",
-  }
+  },
+  {
+    id: 8,
+    title: "Multi-Brand SMS Automation Platform",
+    description:
+      "Production-ready, multi-brand SMS automation for businesses that run campaigns across several brands or clients from one place. A modern React dashboard to manage brands, launch SMS blasts from ActiveCampaign audiences (by tag), track delivery in real time, retry failed numbers, and view subscriber growth analytics — backed by a Cloudflare Worker API with queue-based sending, Twilio delivery webhooks, and secure admin login. Ideal for marketing agencies, e-commerce brands, and SaaS teams that need reliable bulk SMS without juggling separate tools per brand.",
+    image: smsDashboard,
+    images: [
+      { src: smsDashboard, label: "Dashboard" },
+      { src: smsBrands, label: "Brands" },
+      { src: smsAudienceTag, label: "Audience tag" },
+      { src: smsCampaigns, label: "Campaigns" },
+      { src: smsCreateCampaign, label: "Create campaign" },
+      { src: smsScheduleCampaign, label: "Schedule campaign" },
+      { src: smsAnalytics, label: "Analytics" },
+      { src: smsSettings, label: "Settings" },
+    ],
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Cloudflare Workers",
+      "KV",
+      "Queues",
+      "Twilio",
+      "ActiveCampaign",
+    ],
+    features: [
+      "Multi-brand admin: per-brand Twilio + ActiveCampaign config and audience tags",
+      "Tag-based audiences from ActiveCampaign; dashboard subscriber counts per brand",
+      "Campaign create/send, timezone-aware scheduling, Gmail-style list with filters",
+      "Queue-based sending (Cloudflare Queue); mock or live Twilio mode",
+      "Per-phone delivery status, failure diagnostics, retry single or all failed",
+      "Inbound STOP/unsubscribe handling; sent vs failed analytics and growth metrics",
+      "Secure login, password reset/change, and protected API routes",
+    ],
+    challenges:
+      "Managing SMS for multiple brands in separate Twilio/CRM setups is slow and error-prone. Bulk sends need queues, per-number status, and failure diagnostics — not a single fire-and-forget API call. Teams need subscriber counts, delivery vs failure, and opt-out tracking in one view.",
+    solution:
+      "One admin panel per deployment: React dashboard → Cloudflare Worker API → KV + Queue → ActiveCampaign audiences and Twilio SMS. User selects brand, AC tag, and message (optional schedule); the worker loads phones from ActiveCampaign, stores the campaign in KV, and enqueues each number. Queue consumers send via Twilio; webhooks update delivered/failed/replies/unsubs; the dashboard polls live campaign and analytics data.",
+    category: "Full-Stack",
+    track: "AI & Automation",
+    role: "Full-stack engineer",
+  },
+  {
+    id: 9,
+    title: "Grocery Order Management System (GOM)",
+    description:
+      "Full-stack B2B order and billing platform for wholesale grocery and meat suppliers. Built for a Bangladesh-based grocer: customers place orders online; staff fulfill, price, invoice, and settle payments with full audit trails. Bilingual UI (English + Bangla) with print-ready invoices and challans. Multi-role access (customer, moderator, admin, master admin), dual invoicing (supplier cost vs customer sell price), statement cycles, financial ledger, and admin analytics — ideal for wholesalers that run quantity-based orders on credit cycles.",
+    image: gomDashboard,
+    images: [
+      { src: gomDashboard, label: "Admin dashboard" },
+      { src: gomLogin, label: "Sign in" },
+      { src: gomOrderList, label: "Order list" },
+      { src: gomPurchaseSettle, label: "Purchase settlement" },
+      { src: gomBillingStatements, label: "Billing statements" },
+      { src: gomFinancialLedger, label: "Financial ledger" },
+      { src: gomCategoryList, label: "Category & markup" },
+    ],
+    technologies: [
+      "React 18",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Radix UI",
+      "Recharts",
+      "Laravel 13",
+      "MySQL",
+      "Docker",
+    ],
+    features: [
+      "Order lifecycle: draft → submitted → processing → delivered → invoiced with status gates",
+      "Dual invoicing: challan, purchase invoice (supplier cost), billing invoice (customer price + markup)",
+      "Role-based permissions; 24-hour customer edit lock; staff orders on behalf of customers",
+      "Billing & purchase statement cycles, payment allocation, outstanding bills",
+      "Financial ledger with supplier vs customer books and running balance",
+      "Category/item markup rules with history; Bangla numerals on print templates",
+      "Admin dashboard: sales KPIs, delivery punctuality, revenue trends, product insights",
+      "Catalog (EN + Bangla), notifications, document void/regenerate with ledger reversal",
+    ],
+    challenges:
+      "Wholesale grocers often run orders on phone, paper, and spreadsheets — lost edits near delivery, separate cost vs customer price with no clear margin, staff stepping on each other’s work, and no single view of supplier payables vs customer receivables.",
+    solution:
+      "Monorepo React SPA + Laravel API: customers build orders with delivery windows and bilingual catalog; moderators generate challans and purchase invoices from supplier costs; admins apply markup and issue billing invoices. Statements bucket cycles with carryover; payments allocate across orders; ledger records debits/credits per book. Enforced business rules in code (challan quantities, purchase pricing locks, billing-only for admins) with audit logs and soft-delete preservation.",
+    category: "Full-Stack",
+    track: "Client Solutions",
+    role: "Lead developer",
+  },
 ];
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
@@ -328,12 +431,14 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <Button variant="gradient" size="sm" asChild>
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    View Project
-                  </a>
-                </Button>
+                {project.liveUrl && (
+                  <Button variant="gradient" size="sm" asChild>
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      View Project
+                    </a>
+                  </Button>
+                )}
                 {"githubBackendUrl" in project && project.githubBackendUrl && (
                   <Button variant="outline" size="sm" asChild>
                     <a href={project.githubBackendUrl} target="_blank" rel="noopener noreferrer">

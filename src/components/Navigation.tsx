@@ -87,10 +87,10 @@ const Navigation = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="bg-gradient-to-r from-portfolio-cool via-portfolio-primary to-portfolio-secondary bg-clip-text text-transparent drop-shadow-[0_2px_8px_hsl(var(--portfolio-primary)/0.35)]">
+            <span className="text-white">
               mdrifatul.info
             </span>
-            <span className="pointer-events-none absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-gradient-to-r from-portfolio-cool via-portfolio-primary to-portfolio-secondary transition-all duration-300 group-hover:w-full" />
+            <span className="pointer-events-none absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-white/80 transition-all duration-300 group-hover:w-full" />
           </motion.a>
 
           {/* Desktop Navigation */}

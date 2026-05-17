@@ -134,9 +134,6 @@ const Footer = () => {
           <p className="text-muted-foreground text-sm">
             © {currentYear} mdrifatul.info. All rights reserved.
           </p>
-          <p className="text-muted-foreground text-sm">
-            Built with React, TypeScript & Tailwind CSS
-          </p>
         </motion.div>
       </div>
     </footer>
