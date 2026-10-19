@@ -83,41 +83,46 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222 47% 6%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222 44% 9%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 44% 9%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 217 32% 14%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 217 32% 14%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 217 32% 14%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 217 28% 18%;
+    --input: 217 28% 18%;
     --ring: 212.7 26.8% 83.9%;
 
     /* Portfolio Dark Mode */
     --portfolio-primary: 220 90% 66%;
     --portfolio-secondary: 253 90% 72%;
+    --portfolio-accent: 166 72% 45%;
+    --portfolio-warm: 193 85% 52%;
+    --portfolio-cool: 199 92% 55%;
     --gradient-primary: linear-gradient(135deg, hsl(var(--portfolio-primary)), hsl(var(--portfolio-secondary)));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(217.2 32.6% 17.5%));
-    --shadow-elegant: 0 10px 30px -10px hsl(var(--portfolio-primary) / 0.4);
-    --shadow-glow: 0 0 40px hsl(var(--portfolio-primary) / 0.2);
+    --gradient-hero: linear-gradient(135deg, hsl(220 90% 66%) 0%, hsl(253 90% 72%) 52%, hsl(199 92% 55%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(217 32% 10%));
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--portfolio-primary) / 0.45);
+    --shadow-glow: 0 0 40px hsl(var(--portfolio-primary) / 0.25);
+    --shadow-card: 0 4px 20px -4px hsl(var(--portfolio-primary) / 0.2);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -125,7 +130,7 @@ All colors MUST be HSL.
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 217.2 91.2% 59.9%;
   }
 }
 
@@ -136,8 +141,19 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    letter-spacing: -0.011em;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  .font-display {
+    font-family: Fraunces, Georgia, "Times New Roman", serif;
+    font-optical-sizing: auto;
   }
 
   html {
@@ -168,6 +184,44 @@ All colors MUST be HSL.
     background: var(--gradient-hero);
   }
 
+  .section-kicker {
+    margin-bottom: 0.7rem;
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: hsl(var(--portfolio-primary));
+  }
+
+  .section-title {
+    font-family: Fraunces, Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    font-weight: 560;
+    font-optical-sizing: auto;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+  }
+
+  .hero-title {
+    font-family: Fraunces, Georgia, "Times New Roman", serif;
+    font-size: clamp(2.65rem, 5.1vw, 4.35rem);
+    font-weight: 560;
+    font-optical-sizing: auto;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+  }
+
+  .page-title {
+    font-family: Fraunces, Georgia, "Times New Roman", serif;
+    font-size: clamp(2.15rem, 4vw, 3.25rem);
+    font-weight: 560;
+    font-optical-sizing: auto;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
   .section-header {
     position: relative;
     display: inline-block;
@@ -176,12 +230,32 @@ All colors MUST be HSL.
   .section-header::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: -8px;
     left: 0;
-    width: 60%;
-    height: 4px;
-    background: var(--gradient-primary);
+    width: 2.75rem;
+    height: 2px;
+    background: hsl(var(--portfolio-primary));
     border-radius: 2px;
+    transform-origin: left center;
+    transform: scaleX(1);
+  }
+
+  @supports (animation-timeline: view()) {
+    .section-header::after {
+      transform: scaleX(0);
+      animation: underline-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+
+  @keyframes underline-draw {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
   }
 
   .card-hover {
@@ -254,10 +328,24 @@ All colors MUST be HSL.
   }
 
   .glass-panel {
-    background: linear-gradient(135deg, hsl(var(--background) / 0.58), hsl(var(--background) / 0.38));
+    background: linear-gradient(135deg, hsl(var(--background) / 0.72), hsl(var(--background) / 0.48));
     border: 1px solid hsl(var(--border) / 0.7);
     box-shadow: 0 16px 40px -24px hsl(var(--portfolio-primary) / 0.35);
     backdrop-filter: blur(14px);
+  }
+
+  .dark .glass-panel {
+    background: linear-gradient(135deg, hsl(var(--card) / 0.85), hsl(var(--background) / 0.65));
+    border: 1px solid hsl(var(--border) / 0.9);
+    box-shadow: 0 16px 40px -24px hsl(0 0% 0% / 0.45);
+  }
+
+  .dark .hero-mesh {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, hsl(var(--portfolio-primary) / 0.28) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 15%, hsl(var(--portfolio-secondary) / 0.22) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 45% at 10% 70%, hsl(var(--portfolio-cool) / 0.18) 0%, transparent 50%),
+      radial-gradient(ellipse 55% 40% at 75% 75%, hsl(var(--portfolio-accent) / 0.15) 0%, transparent 45%);
   }
 
   .modern-surface {
@@ -281,12 +369,12 @@ All colors MUST be HSL.
   }
 
   .hover-lift-soft {
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.25s ease;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.3s ease;
   }
 
   .hover-lift-soft:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 38px -24px hsl(var(--portfolio-primary) / 0.4);
+    box-shadow: 0 22px 40px -22px hsl(var(--portfolio-primary) / 0.38);
   }
 
   .animated-border {
@@ -318,5 +406,47 @@ All colors MUST be HSL.
     background-image: radial-gradient(hsl(var(--foreground) / 0.5) 0.45px, transparent 0.45px);
     background-size: 4px 4px;
     mix-blend-mode: soft-light;
+  }
+
+  .hero-mesh {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, hsl(var(--portfolio-primary) / 0.22) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 15%, hsl(var(--portfolio-secondary) / 0.18) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 45% at 10% 70%, hsl(var(--portfolio-cool) / 0.14) 0%, transparent 50%),
+      radial-gradient(ellipse 55% 40% at 75% 75%, hsl(var(--portfolio-accent) / 0.12) 0%, transparent 45%);
+  }
+
+  .hero-shimmer {
+    background: linear-gradient(
+      115deg,
+      transparent 30%,
+      hsl(var(--portfolio-primary) / 0.08) 45%,
+      hsl(var(--portfolio-secondary) / 0.12) 50%,
+      hsl(var(--portfolio-cool) / 0.08) 55%,
+      transparent 70%
+    );
+    animation: hero-shimmer 8s ease-in-out infinite;
+  }
+
+  @keyframes hero-shimmer {
+    0%, 100% {
+      transform: translateX(-15%) rotate(-12deg);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateX(15%) rotate(-12deg);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .section-header::after,
+    .hero-shimmer {
+      animation: none;
+    }
   }
 }

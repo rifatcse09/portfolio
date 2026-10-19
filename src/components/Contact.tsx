@@ -1,185 +1,162 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { Mail, MapPin, FileDown, BookOpen, CalendarDays, Linkedin } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { CalendarDays } from "lucide-react";
+import ProfileLinks from "./ProfileLinks";
 import { ScrollReveal } from "./ScrollReveal";
-import { motion } from "framer-motion";
+import { SITE } from "@/data/site";
+import { trackLead } from "./AnalyticsPageView";
 
 const Contact = () => {
-  const CV_URL = "/cv.pdf";
-  const CALENDLY_URL = "https://calendly.com/rifatcse09/30min";
-  const contactInfo = [
-    {
-      icon: CalendarDays,
-      title: "Book a Meeting",
-      description: "30-min Calendly session",
-      action: CALENDLY_URL
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      description: "rifatcse09@gmail.com",
-      action: "mailto:rifatcse09@gmail.com"
-    },
-    {
-      icon: Linkedin,
-      title: "LinkedIn",
-      description: "in/rifatcse09",
-      action: "https://www.linkedin.com/in/rifatcse09/"
-    },
-    {
-      icon: BookOpen,
-      title: "Medium",
-      description: "@rifatcse09",
-      action: "https://medium.com/@rifatcse09"
-    },
-    {
-      icon: FileDown,
-      title: "CV / Resume",
-      description: "Download PDF",
-      action: CV_URL
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      description: "Dhaka, Bangladesh",
-      action: "#"
-    },
-  ];
+  const started = useRef(Date.now());
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [company, setCompany] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [error, setError] = useState("");
+
+  const onSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setStatus("sending");
+    setError("");
+
+    try {
+      const response = await fetch("/contact.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          company,
+          started: started.current,
+          page: window.location.href,
+        }),
+      });
+      let data: { ok?: boolean; error?: string } = {};
+      try {
+        data = (await response.json()) as { ok?: boolean; error?: string };
+      } catch {
+        throw new Error("The note did not send.");
+      }
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || "The note did not send.");
+      }
+      trackLead("form");
+      setStatus("sent");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (err) {
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "The note did not send.");
+    }
+  };
 
   return (
-    <section id="contact" className="section-noise py-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(25 95% 53% / 0.04) 100%)' }}>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(221_83%_53%_/_0.06)_0%,transparent_70%)]" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-64 bg-portfolio-warm/5 rounded-full blur-3xl" />
-
-      <div className="container mx-auto px-6 relative">
-        <div className="max-w-6xl mx-auto">
-          <ScrollReveal className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 section-header">
-              Let's <span className="gradient-text">Connect</span>
+    <section id="contact" className="relative overflow-hidden py-20">
+      <div className="container relative mx-auto px-6">
+        <div className="mx-auto max-w-xl">
+          <ScrollReveal>
+            <h2 className="section-header section-title mb-6 text-center">
+              Tell me what you <span className="gradient-text">need</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Ready to bring your ideas to life? Let's discuss your project
-              and create something amazing together.
+            <p className="mx-auto mb-4 max-w-lg text-center text-lg text-muted-foreground">
+              A short note is enough: the goal, the timeline, and a budget range. I reply within 24 hours.
             </p>
-          </ScrollReveal>
+            <p className="mb-8 text-center">
+              <a
+                href={`mailto:${SITE.email}`}
+                className="inline-flex rounded-full bg-portfolio-primary/15 px-4 py-2 text-lg font-bold text-portfolio-primary underline decoration-2 underline-offset-4"
+              >
+                {SITE.email}
+              </a>
+            </p>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <ScrollReveal direction="left" className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
-                <p className="text-muted-foreground leading-relaxed mb-8">
-                  Currently Sr. Full-Stack Engineer at RainbowIT. I design modular backend architecture,
-                  distributed data pipelines, and scalable systems. Feel free to connect for collaboration
-                  or technical discussions.
-                </p>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                {contactInfo.map((info, index) => (
-                  info.action !== "#" ? (
-                    <motion.a
-                      key={index}
-                      href={info.action}
-                      target={info.action.startsWith("http") || info.action.endsWith(".pdf") ? "_blank" : undefined}
-                      rel={info.action.startsWith("http") ? "noopener noreferrer" : undefined}
-                      download={info.action.endsWith(".pdf") ? "MD-Rifatul-Islam-CV.pdf" : undefined}
-                      className="flex items-center gap-4 rounded-xl p-4 transition-colors group hover:bg-muted/50 glass-panel hover-lift-soft"
-                      whileHover={{ x: 5, y: -2 }}
-                    >
-                      <div className="w-12 h-12 bg-portfolio-primary/10 rounded-lg flex items-center justify-center group-hover:bg-portfolio-primary/20 transition-colors">
-                        <info.icon className="w-5 h-5 text-portfolio-primary" />
-                      </div>
-                      <div>
-                        <div className="font-semibold">{info.title}</div>
-                        <span className="text-muted-foreground group-hover:text-portfolio-primary transition-colors">
-                          {info.description}
-                        </span>
-                      </div>
-                    </motion.a>
-                  ) : (
-                    <motion.div
-                      key={index}
-                      className="flex items-center gap-4 rounded-xl p-4 glass-panel hover-lift-soft"
-                      whileHover={{ x: 5, y: -2 }}
-                    >
-                      <div className="w-12 h-12 bg-portfolio-primary/10 rounded-lg flex items-center justify-center">
-                        <info.icon className="w-5 h-5 text-portfolio-primary" />
-                      </div>
-                      <div>
-                        <div className="font-semibold">{info.title}</div>
-                        <span className="text-muted-foreground">{info.description}</span>
-                      </div>
-                    </motion.div>
-                  )
-                ))}
-              </div>
-
-              <div className="pt-8">
-                <h4 className="font-semibold mb-4">What I Bring to the Table:</h4>
-                <ul className="space-y-3 text-muted-foreground">
-                  {[
-                    "9+ years building scalable backend systems",
-                    "Node.js, NestJS, Laravel & PostgreSQL expertise",
-                    "Microservices & event-driven architecture",
-                    "AWS, Docker, CI/CD & distributed systems",
-                  ].map((item, i) => (
-                    <motion.li
-                      key={i}
-                      className="flex items-center gap-3"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                    >
-                      <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full" />
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal direction="right">
-              <Card className="card-hover overflow-hidden border-portfolio-primary/10 glass-panel modern-surface hover-lift-soft animated-border">
-                <CardHeader>
-                  <CardTitle>Book a Discovery Call</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <p className="text-muted-foreground leading-relaxed">
-                    Choose a time that works for you and book a direct 30-minute call with me.
-                    We can discuss your project scope, timeline, and best technical approach.
+            {status === "sent" ? (
+              <p className="rounded-2xl border border-border/70 bg-card/50 px-6 py-8 text-center text-foreground">
+                Received. I will reply to your email within 24 hours.
+              </p>
+            ) : (
+              <form onSubmit={onSubmit} className="space-y-4 text-left">
+                <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
+                  <label htmlFor="company">Company</label>
+                  <input
+                    id="company"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={company}
+                    onChange={(event) => setCompany(event.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="contact-name">Name</Label>
+                  <Input
+                    id="contact-name"
+                    name="name"
+                    autoComplete="name"
+                    required
+                    minLength={2}
+                    maxLength={80}
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="contact-email">Email</Label>
+                  <Input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    maxLength={120}
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="contact-message">Project note</Label>
+                  <Textarea
+                    id="contact-message"
+                    name="message"
+                    required
+                    minLength={10}
+                    maxLength={4000}
+                    rows={5}
+                    placeholder="Goal, timeline, and a budget range"
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
+                  />
+                </div>
+                {status === "error" && (
+                  <p className="text-sm text-destructive" role="alert">
+                    {error} You can also email {SITE.email}.
                   </p>
-                  <div className="space-y-3 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full" />
-                      30-minute session
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full" />
-                      Google Calendar invite + reminders
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-portfolio-primary rounded-full" />
-                      Fast project discovery and next steps
-                    </div>
-                  </div>
-                  <motion.a
-                    href={CALENDLY_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="block"
-                  >
-                    <Button variant="gradient" className="w-full">
-                      <CalendarDays className="mr-2 h-4 w-4" />
-                      Schedule on Calendly
-                    </Button>
-                  </motion.a>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-          </div>
+                )}
+                <Button type="submit" variant="gradient" size="lg" className="w-full" disabled={status === "sending"}>
+                  {status === "sending" ? "Sending…" : "Send the note"}
+                </Button>
+              </form>
+            )}
+
+            <div className="mt-6 flex justify-center">
+              <Button variant="outline" size="lg" className="gap-2" asChild>
+                <a href={SITE.calendly} target="_blank" rel="noopener noreferrer">
+                  <CalendarDays className="h-5 w-5" />
+                  Book a free call
+                </a>
+              </Button>
+            </div>
+            <div className="mt-8">
+              <ProfileLinks />
+            </div>
+            <p className="mt-4 text-center text-sm text-muted-foreground">{SITE.timezone} · remote</p>
+          </ScrollReveal>
         </div>
       </div>
     </section>

@@ -187,12 +187,14 @@ const About = () => {
       <div className="container relative mx-auto px-6">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mb-16 text-center">
-            <h2 className="mb-6 text-4xl font-bold md:text-5xl section-header">
-              About <span className="gradient-text">Me</span>
+            <p className="section-kicker">
+              Technical depth
+            </p>
+            <h2 className="section-header section-title mb-6">
+              Skills & <span className="gradient-text">Expertise</span>
             </h2>
             <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-              Senior Backend Engineer with 9+ years building scalable backend systems and SaaS platforms.
-              Expertise in Node.js, NestJS, Laravel, and PostgreSQL with focus on distributed and event-driven architectures.
+              The stack behind the niche: model APIs, retrieval, SaaS integrations, and the production systems they run on.
             </p>
           </ScrollReveal>
 
@@ -214,7 +216,7 @@ const About = () => {
                       Technologies <span className="gradient-text">&amp; Skills</span>
                     </h3>
                     <p className="mt-2 text-sm text-muted-foreground md:text-base">
-                      Backend-first engineering, AI stacks, Supabase, Cloudflare edge, and AWS.
+                      AI backends first, then the data, edge, and cloud pieces that keep them in production.
                     </p>
                   </div>
 

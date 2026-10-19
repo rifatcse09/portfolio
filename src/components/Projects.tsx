@@ -3,7 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScreenshotModal } from "@/components/ScreenshotModal";
-import { ExternalLink, Github, Images, Sparkles } from "lucide-react";
+import { ExternalLink, Github, Images, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
 import project1 from "@/assets/project1.png";
 import reelflixHero from "@/assets/reelflix-main.png";
 import reelflixDashboard from "@/assets/reelflix/dashboard.png";
@@ -26,7 +27,7 @@ import storeFlowWebhook from "@/assets/store-flow/custom-webhook.png";
 import storeFlowMapping from "@/assets/store-flow/data-mapping.png";
 import storeFlowCondition from "@/assets/store-flow/condition.png";
 import kitchenflowMain from "@/assets/kitchenflow-main.png";
-import agenticRagMain from "@/assets/agentic-rag-main.png";
+import docsRagMcpChat from "@/assets/docs-rag-mcp/chat-interface.png";
 import smsDashboard from "@/assets/sms-platform/dashboard.png";
 import smsCampaigns from "@/assets/sms-platform/campaigns.png";
 import smsBrands from "@/assets/sms-platform/brands.png";
@@ -34,6 +35,8 @@ import smsAudienceTag from "@/assets/sms-platform/audience-tag.png";
 import smsCreateCampaign from "@/assets/sms-platform/create-campaign.png";
 import smsScheduleCampaign from "@/assets/sms-platform/schedule-campaign.png";
 import smsAnalytics from "@/assets/sms-platform/analytics.png";
+import smsCampaignDetail from "@/assets/sms-platform/campaign-detail.png";
+import smsTwilioTotals from "@/assets/sms-platform/twilio-totals.png";
 import smsSettings from "@/assets/sms-platform/settings.png";
 import gomDashboard from "@/assets/gom/dashboard.png";
 import gomLogin from "@/assets/gom/login.png";
@@ -42,6 +45,9 @@ import gomPurchaseSettle from "@/assets/gom/purchase-settle.png";
 import gomBillingStatements from "@/assets/gom/billing-statements.png";
 import gomFinancialLedger from "@/assets/gom/financial-ledger.png";
 import gomCategoryList from "@/assets/gom/category-list.png";
+import rewardsxBanking from "@/assets/rewardsx/banking-dashboard.png";
+import bridgeopsAcademy from "@/assets/bridgeops/communications-simulator.png";
+import BrowserFrame from "./BrowserFrame";
 import { ScrollReveal } from "./ScrollReveal";
 import { motion } from "framer-motion";
 
@@ -55,16 +61,94 @@ type Project = {
   features: string[];
   challenges: string;
   solution: string;
-    liveUrl?: string;
-    githubUrl?: string;
+  liveUrl?: string;
+  githubUrl?: string;
   githubBackendUrl?: string;
   githubFrontendUrl?: string;
   category: "Full-Stack" | "Backend";
-  track: "AI & Automation" | "Client Solutions" | "Products & Experiments";
+  track: "AI & Automation" | "Client Solutions" | "Products & Experiments" | "FinTech & Enterprise";
   role: string;
+  caseStudyUrl?: string;
+  chromeWebStoreUrl?: string;
 };
 
 const projects: Project[] = [
+  {
+    id: 11,
+    title: "BridgeOpsOne AI Incident Platform",
+    description:
+      "Security assessment and delivery for an AI SaaS: Chrome extension for incident communication, Academy with OpenAI-graded simulators, config-driven entitlements, and dual-product subscription schema.",
+    image: bridgeopsAcademy,
+    images: [{ src: bridgeopsAcademy, label: "Academy Communications Simulator" }],
+    technologies: [
+      "Chrome Extension",
+      "Plasmo",
+      "React 19",
+      "Node.js",
+      "Firebase",
+      "Firestore",
+      "OpenAI",
+      "Render",
+      "Stripe (planned)",
+    ],
+    features: [
+      "M1 assessment: 20 security findings, architecture map, phased remediation roadmap",
+      "Phase A to D: auth hardening, plan schema, Chrome Web Store launch, Firestore subscription catalog",
+      "AI Tool: incident updates via OpenAI with server-enforced Starter limits (20/mo)",
+      "Academy: communication simulators with Firebase auth + OpenAI grading",
+      "Dual subscriptions: separate AI Tool + Academy plans on one account",
+      "Post-launch proposal: Stripe, billing UI, Microsoft login, Firebase merge (Phases E to I)",
+    ],
+    challenges:
+      "Live AI platform with split Firebase identity, unauthenticated OpenAI endpoints, and a July 6 launch deadline. Needed security remediation without rebuilding the product.",
+    solution:
+      "Delivered milestone-based assessment through subscription database: removed client secrets, enforced auth on all AI routes, config-driven entitlements, Firestore plan catalog for bridgeopsone.com pricing, and scoped post-launch Stripe roadmap.",
+    category: "Full-Stack",
+    track: "AI & Automation",
+    role: "Platform Security & Full-Stack Engineer",
+    liveUrl: "https://bridgeopsone-academy.web.app",
+    chromeWebStoreUrl:
+      "https://chromewebstore.google.com/detail/bridgeopsone/aioldhkomfbnaonfcobbfabpejammnoc",
+    caseStudyUrl: "/projects/bridgeopsone",
+  },
+  {
+    id: 10,
+    title: "RewardsX BRINE Internal Ops Platform",
+    description:
+      "Full-stack internal operations platform for a loyalty and rewards fintech. Manages banks, merchants, offers, RBAC, and a transaction ledger that powers consumer POS apps through secure APIs on GCP.",
+    image: rewardsxBanking,
+    images: [{ src: rewardsxBanking, label: "Banking and credit cards admin" }],
+    technologies: [
+      "Next.js 15",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Sequelize",
+      "Firebase",
+      "GCP Pub/Sub",
+      "Docker",
+      "Terraform",
+      "Mantine",
+      "TypeScript",
+    ],
+    features: [
+      "40+ REST domain modules: banks, merchants, ledger, RBAC, disputes, geocoding",
+      "PBAC with Firebase auth, audit logs, and security anomaly dashboard",
+      "Transaction ledger: earn, redeem, reverse with integrity hashing and Pub/Sub",
+      "Next.js BFF with split GCP service accounts for read vs write paths",
+      "Merchant geocoding via OSM, HERE, Yelp, Mapbox with SSRF-safe proxies",
+      "CI/CD: GitHub Actions to Docker, GCP Artifact Registry, VM deploy",
+    ],
+    challenges:
+      "Consumer loyalty apps needed a separate internal source of truth for banking, merchants, and ledger flows without exposing admin tooling or compromising financial-adjacent audit requirements.",
+    solution:
+      "Built BRINE as a two-repo ecosystem: Next.js admin + Express API on PostgreSQL, with PBAC, idempotent migrations, BFF JWT proxying, and Pub/Sub ledger events feeding Orbiter POS and downstream systems.",
+    category: "Full-Stack",
+    track: "FinTech & Enterprise",
+    role: "Full-Stack Developer",
+    liveUrl: "https://dev-brine.rewardsx.ca/signin",
+    caseStudyUrl: "/projects/rewardsx",
+  },
   {
     id: 1,
     title: "Multi-Vendor E-Commerce Platform",
@@ -171,7 +255,7 @@ const projects: Project[] = [
   {
     id: 5,
     title: "SaaS Webhook Orchestration Engine",
-    description: "Simplifies automation by integrating your store with CRM, email marketing, and more. Integrate essential workflows like order management, customer data updates, export data, and inventory sync—reducing manual tasks and saving time. User-friendly interface, no code required.",
+    description: "Simplifies automation by integrating your store with CRM, email marketing, and more. Integrate essential workflows like order management, customer data updates, export data, and inventory sync, reducing manual tasks and saving time. User-friendly interface, no code required.",
     image: storeFlowDashboard,
     images: [
       { src: storeFlowDashboard, label: "Dashboard" },
@@ -224,35 +308,42 @@ const projects: Project[] = [
   },
   {
     id: 7,
-    title: "Agentic RAG System (NestJS + Next.js)",
-    description: "A production-oriented Agentic RAG platform for document-grounded Q&A, source-attributed responses, and tool-ready business automation workflows.",
-    image: agenticRagMain,
-    technologies: ["NestJS", "Next.js 15", "LangChain.js", "Ollama", "Qdrant", "Docker", "PostgreSQL"],
+    title: "Docs RAG MCP Platform",
+    description:
+      "Agentic RAG monorepo: NestJS + LangChain.js document Q&A with Ollama and Qdrant, Next.js upload and chat UI, and an MCP server layer so Cursor and Claude can call business tools alongside private doc search.",
+    image: docsRagMcpChat,
+    images: [{ src: docsRagMcpChat, label: "Invoice Q&A chat with PDF source attribution" }],
+    technologies: ["NestJS", "Next.js 15", "LangChain.js", "Ollama", "Qdrant", "MCP SDK", "Docker"],
     features: [
-      "Document ingestion pipeline for PDF/text with chunking and embeddings",
-      "RAG chat endpoint returning answers with source attribution and context count",
-      "Vector layer with Qdrant persistence plus in-memory fallback for local development",
-      "Agent endpoint architecture for orchestrating tools and RAG together",
-      "Monorepo setup with NestJS backend and Next.js frontend workspace",
-      "Docker-based local stack for Ollama, Qdrant, API, and optional infra services"
+      "PDF ingestion with chunking, Ollama embeddings, and Qdrant vector persistence",
+      "RAG chat with source-attributed answers and context chunk count",
+      "Next.js upload and chat UI for invoice and policy document Q&A",
+      "MCP tools, resources, and prompts wrapping APIs and SQLite for AI clients",
+      "Agent module scaffold for RAG + tool orchestration via LangGraph",
+      "Docker Compose stack for Ollama, Qdrant, API, and frontend",
     ],
-    challenges: "Building a reliable knowledge assistant that can stay grounded on private documents, reduce hallucinations, and evolve from simple Q&A into action-oriented AI workflows.",
-    solution: "Implemented a NestJS + LangChain architecture with retrieval guardrails, local Ollama models, source-backed responses, and an extensible agent layer designed for tool integrations and future production scaling.",
+    challenges:
+      "Teams need grounded answers from private PDFs while AI assistants in the IDE need a standard protocol to reach internal APIs without hallucinating or leaking data to external LLMs.",
+    solution:
+      "Built a NestJS + LangChain RAG pipeline with local Ollama models, Qdrant storage, source-backed chat UI, and an MCP server that exposes validated tools over stdio for Cursor integration.",
     liveUrl: "https://github.com/rifatcse09/agentic-rag-system-nestjs",
     githubUrl: "https://github.com/rifatcse09/agentic-rag-system-nestjs",
     category: "Full-Stack",
     track: "AI & Automation",
     role: "Agentic AI engineer",
+    caseStudyUrl: "/projects/docs-rag-mcp",
   },
   {
     id: 8,
     title: "Multi-Brand SMS Automation Platform",
     description:
-      "Production-ready, multi-brand SMS automation for businesses that run campaigns across several brands or clients from one place. A modern React dashboard to manage brands, launch SMS blasts from ActiveCampaign audiences (by tag), track delivery in real time, retry failed numbers, and view subscriber growth analytics — backed by a Cloudflare Worker API with queue-based sending, Twilio delivery webhooks, and secure admin login. Ideal for marketing agencies, e-commerce brands, and SaaS teams that need reliable bulk SMS without juggling separate tools per brand.",
+      "Built a full-stack SMS marketing platform for a wellness brand: React dashboard on Cloudflare Pages, Worker API with queues, ActiveCampaign tag audiences, and 10DLC-compliant Twilio routing. Fixed analytics drift so replies (33) and opt-outs (25) matched Twilio Insights on a 2,383-contact blast.",
     image: smsDashboard,
     images: [
       { src: smsDashboard, label: "Dashboard" },
       { src: smsBrands, label: "Brands" },
+      { src: smsCampaignDetail, label: "Campaign detail and Sync with Twilio" },
+      { src: smsTwilioTotals, label: "Twilio totals: replies and opt-outs" },
       { src: smsAudienceTag, label: "Audience tag" },
       { src: smsCampaigns, label: "Campaigns" },
       { src: smsCreateCampaign, label: "Create campaign" },
@@ -272,27 +363,28 @@ const projects: Project[] = [
       "ActiveCampaign",
     ],
     features: [
-      "Multi-brand admin: per-brand Twilio + ActiveCampaign config and audience tags",
-      "Tag-based audiences from ActiveCampaign; dashboard subscriber counts per brand",
-      "Campaign create/send, timezone-aware scheduling, Gmail-style list with filters",
-      "Queue-based sending (Cloudflare Queue); mock or live Twilio mode",
-      "Per-phone delivery status, failure diagnostics, retry single or all failed",
-      "Inbound STOP/unsubscribe handling; sent vs failed analytics and growth metrics",
-      "Secure login, password reset/change, and protected API routes",
+      "Multi-brand admin with per-brand Twilio and ActiveCampaign config",
+      "Queue-based Cloudflare Worker sends with delivery webhooks",
+      "One-click Sync with Twilio for trusted reply and opt-out totals",
+      "ActiveCampaign tag audiences; timezone-aware campaign scheduling",
+      "Per-phone failure diagnostics with single or batch retry",
+      "10DLC-compliant routing for production US SMS blasts",
     ],
     challenges:
-      "Managing SMS for multiple brands in separate Twilio/CRM setups is slow and error-prone. Bulk sends need queues, per-number status, and failure diagnostics — not a single fire-and-forget API call. Teams need subscriber counts, delivery vs failure, and opt-out tracking in one view.",
+      "Misleading post-blast metrics, 10DLC compliance risk, and no trusted way to reconcile dashboard numbers with Twilio after large sends.",
     solution:
-      "One admin panel per deployment: React dashboard → Cloudflare Worker API → KV + Queue → ActiveCampaign audiences and Twilio SMS. User selects brand, AC tag, and message (optional schedule); the worker loads phones from ActiveCampaign, stores the campaign in KV, and enqueues each number. Queue consumers send via Twilio; webhooks update delivered/failed/replies/unsubs; the dashboard polls live campaign and analytics data.",
+      "Multi-brand React admin on Cloudflare Pages, Worker API with KV + Queues, Twilio webhooks, and Sync with Twilio so analytics match Twilio Insights. Replaced manual CSV reconciliation after every blast.",
     category: "Full-Stack",
     track: "AI & Automation",
     role: "Full-stack engineer",
+    liveUrl: "https://spellsology-26f.pages.dev",
+    caseStudyUrl: "/projects/sms-platform",
   },
   {
     id: 9,
     title: "Grocery Order Management System (GOM)",
     description:
-      "Full-stack B2B order and billing platform for wholesale grocery and meat suppliers. Built for a Bangladesh-based grocer: customers place orders online; staff fulfill, price, invoice, and settle payments with full audit trails. Bilingual UI (English + Bangla) with print-ready invoices and challans. Multi-role access (customer, moderator, admin, master admin), dual invoicing (supplier cost vs customer sell price), statement cycles, financial ledger, and admin analytics — ideal for wholesalers that run quantity-based orders on credit cycles.",
+      "Full-stack B2B order and billing platform for wholesale grocery and meat suppliers. Built for a Bangladesh-based grocer: customers place orders online; staff fulfill, price, invoice, and settle payments with full audit trails. Bilingual UI (English + Bangla) with print-ready invoices and challans. Multi-role access (customer, moderator, admin, master admin), dual invoicing (supplier cost vs customer sell price), statement cycles, financial ledger, and admin analytics. Ideal for wholesalers that run quantity-based orders on credit cycles.",
     image: gomDashboard,
     images: [
       { src: gomDashboard, label: "Admin dashboard" },
@@ -325,7 +417,7 @@ const projects: Project[] = [
       "Catalog (EN + Bangla), notifications, document void/regenerate with ledger reversal",
     ],
     challenges:
-      "Wholesale grocers often run orders on phone, paper, and spreadsheets — lost edits near delivery, separate cost vs customer price with no clear margin, staff stepping on each other’s work, and no single view of supplier payables vs customer receivables.",
+      "Wholesale grocers often run orders on phone, paper, and spreadsheets. That leads to lost edits near delivery, separate cost vs customer price with no clear margin, staff stepping on each other's work, and no single view of supplier payables vs customer receivables.",
     solution:
       "Monorepo React SPA + Laravel API: customers build orders with delivery windows and bilingual catalog; moderators generate challans and purchase invoices from supplier costs; admins apply markup and issue billing invoices. Statements bucket cycles with carryover; payments allocate across orders; ledger records debits/credits per book. Enforced business rules in code (challan quantities, purchase pricing locks, billing-only for admins) with audit logs and soft-delete preservation.",
     category: "Full-Stack",
@@ -333,6 +425,85 @@ const projects: Project[] = [
     role: "Lead developer",
   },
 ];
+
+const FeaturedProjectCard = ({ project }: { project: Project }) => {
+  const [imageSrc, setImageSrc] = useState(project.image);
+  const topTech = project.technologies.slice(0, 4);
+
+  return (
+    <motion.article
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/80 shadow-sm transition-all duration-300 hover:border-portfolio-primary/25 hover:shadow-md"
+      whileHover={{ y: -3 }}
+      transition={{ duration: 0.25 }}
+    >
+      <BrowserFrame
+        src={imageSrc}
+        alt={project.title}
+        url={project.liveUrl}
+        className="rounded-none"
+        imageClassName="h-44 object-cover object-top sm:h-52"
+        onError={() => setImageSrc("/placeholder.svg")}
+      />
+
+      <div className="flex flex-1 flex-col p-5">
+        <div className="mb-2 flex items-center gap-2">
+          <Badge variant="secondary" className="border border-portfolio-primary/20 bg-portfolio-primary/10 text-xs text-portfolio-primary">
+            {project.track}
+          </Badge>
+          <span className="text-xs text-muted-foreground">{project.role}</span>
+        </div>
+
+        <h3 className="text-lg font-semibold leading-snug text-foreground">{project.title}</h3>
+        <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+          {project.description}
+        </p>
+
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {topTech.map((tech) => (
+            <Badge key={tech} variant="outline" className="border-border/80 px-2 py-0 text-[11px] font-normal text-muted-foreground">
+              {tech}
+            </Badge>
+          ))}
+        </div>
+
+        <div className="mt-5 flex flex-wrap gap-2 border-t border-border/60 pt-4">
+          {project.caseStudyUrl && (
+            <Button variant="gradient" size="sm" className="h-8 text-xs" asChild>
+              <Link to={project.caseStudyUrl}>
+                <FileText className="mr-1.5 h-3.5 w-3.5" />
+                Case Study
+              </Link>
+            </Button>
+          )}
+          {project.liveUrl && (
+            <Button variant="outline" size="sm" className="h-8 text-xs" asChild>
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                {project.caseStudyUrl ? "Live Demo" : "View Project"}
+              </a>
+            </Button>
+          )}
+          {project.chromeWebStoreUrl && (
+            <Button variant="outline" size="sm" className="h-8 text-xs" asChild>
+              <a href={project.chromeWebStoreUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                Chrome Store
+              </a>
+            </Button>
+          )}
+          {project.githubUrl && !project.caseStudyUrl && (
+            <Button variant="outline" size="sm" className="h-8 text-xs" asChild>
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <Github className="mr-1.5 h-3.5 w-3.5" />
+                Source
+              </a>
+            </Button>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+};
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -347,28 +518,27 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
-      <Card className="group overflow-hidden border-portfolio-primary/10 glass-panel modern-surface hover-lift-soft animated-border">
-        <div className={`grid gap-8 lg:grid-cols-2 ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>
+      <Card className="group overflow-hidden border-border/70 bg-card/80 shadow-sm transition-all hover:border-portfolio-primary/20 hover:shadow-md">
+        <div className={`grid gap-6 lg:grid-cols-2 lg:gap-8 ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>
           <div className={`${index % 2 === 1 ? "lg:col-start-2" : ""} relative overflow-hidden`}>
-            <motion.div className="relative" whileHover={{ scale: 1.02, y: -2 }} transition={{ duration: 0.35 }}>
-              <img
+            <div className="relative">
+              <BrowserFrame
                 src={imageSrc}
                 alt={project.title}
-                className={`w-full rounded-lg object-cover object-top ${hasGallery ? "h-[28rem]" : "h-80"}`}
-                loading="lazy"
+                url={project.liveUrl}
+                imageClassName={hasGallery ? "h-64 object-cover object-top lg:h-72" : "h-56 object-cover object-top lg:h-64"}
                 onError={() => setImageSrc("/placeholder.svg")}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               {hasGallery && (
                 <>
                   <Button
                     variant="secondary"
                     size="sm"
-                    className="absolute bottom-3 left-1/2 z-10 -translate-x-1/2 gap-1 opacity-90 hover:opacity-100"
+                    className="absolute bottom-3 right-3 z-10 gap-1 shadow-md"
                     onClick={() => setGalleryOpen(true)}
                   >
                     <Images className="h-4 w-4" />
-                    View screenshots
+                    Screenshots
                   </Button>
                   <ScreenshotModal
                     open={galleryOpen}
@@ -378,64 +548,68 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                   />
                 </>
               )}
-            </motion.div>
+            </div>
           </div>
 
-          <div className={`${index % 2 === 1 ? "lg:col-start-1" : ""} p-8`}>
-            <CardHeader className="mb-6 p-0">
-              <div className="mb-2 flex flex-wrap items-center gap-2.5">
-                <Badge variant="secondary" className="gap-1 border border-portfolio-secondary/30 bg-portfolio-secondary/10 text-xs font-semibold text-portfolio-secondary">
-                  <Sparkles className="h-3.5 w-3.5" />
+          <div className={`${index % 2 === 1 ? "lg:col-start-1" : ""} flex flex-col justify-center p-6 lg:p-8`}>
+            <CardHeader className="mb-4 p-0">
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <Badge variant="secondary" className="border border-portfolio-primary/20 bg-portfolio-primary/10 text-xs text-portfolio-primary">
                   {project.track}
                 </Badge>
-                <Badge variant="outline" className="border-border/80 text-xs font-medium text-muted-foreground">
+                <Badge variant="outline" className="border-border/80 text-xs text-muted-foreground">
                   {project.role}
                 </Badge>
-                <Badge variant="outline" className="border-portfolio-primary/40 font-semibold text-portfolio-primary">
-                  {project.category}
-                </Badge>
               </div>
-              <CardTitle className="mb-3 text-2xl">{project.title}</CardTitle>
-              <CardDescription className="text-base leading-relaxed">{project.description}</CardDescription>
+              <CardTitle className="mb-2 text-xl lg:text-2xl">{project.title}</CardTitle>
+              <CardDescription className="text-sm leading-relaxed lg:text-base">{project.description}</CardDescription>
             </CardHeader>
 
-            <CardContent className="space-y-6 p-0">
-              <div>
-                <h4 className="mb-3 font-semibold">Key Features</h4>
-                <ul className="space-y-2">
-                  {project.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start text-sm text-muted-foreground">
-                      <div className="mr-3 mt-2 h-1.5 w-1.5 rounded-full bg-portfolio-primary" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+            <CardContent className="space-y-5 p-0">
+              <ul className="space-y-2">
+                {project.features.slice(0, 4).map((feature, idx) => (
+                  <li key={idx} className="flex items-start text-sm text-muted-foreground">
+                    <div className="mr-2.5 mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-portfolio-primary" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-1.5">
+                {project.technologies.slice(0, 6).map((tech, idx) => (
+                  <Badge key={idx} variant="outline" className="border-border/80 text-xs font-normal text-muted-foreground">
+                    {tech}
+                  </Badge>
+                ))}
+                {project.technologies.length > 6 && (
+                  <Badge variant="outline" className="border-border/80 text-xs font-normal text-muted-foreground">
+                    +{project.technologies.length - 6} more
+                  </Badge>
+                )}
               </div>
 
-              <div>
-                <h4 className="mb-2 font-semibold">Challenge</h4>
-                <p className="mb-3 text-sm text-muted-foreground">{project.challenges}</p>
-                <h4 className="mb-2 font-semibold">Solution</h4>
-                <p className="text-sm text-muted-foreground">{project.solution}</p>
-              </div>
-
-              <div>
-                <h4 className="mb-3 font-semibold">Technologies Used</h4>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {project.technologies.map((tech, idx) => (
-                    <Badge key={idx} variant="secondary" className="border border-portfolio-primary/20 bg-portfolio-primary/5 text-xs text-portfolio-primary">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 pt-1">
+                {project.caseStudyUrl && (
+                  <Button variant="gradient" size="sm" asChild>
+                    <Link to={project.caseStudyUrl}>
+                      <FileText className="mr-2 h-4 w-4" />
+                      Read Case Study
+                    </Link>
+                  </Button>
+                )}
                 {project.liveUrl && (
                   <Button variant="gradient" size="sm" asChild>
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="mr-2 h-4 w-4" />
                       View Project
+                    </a>
+                  </Button>
+                )}
+                {project.chromeWebStoreUrl && (
+                  <Button variant="outline" size="sm" asChild>
+                    <a href={project.chromeWebStoreUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Chrome Store
                     </a>
                   </Button>
                 )}
@@ -478,7 +652,12 @@ const Projects = () => {
     []
   );
   const [activeTrack, setActiveTrack] = useState<(typeof tracks)[number]>("All");
+  const [showAll, setShowAll] = useState(false);
   const visibleProjects = activeTrack === "All" ? projects : projects.filter((project) => project.track === activeTrack);
+  const featuredProjects = useMemo(
+    () => projects.filter((project) => project.caseStudyUrl),
+    []
+  );
 
   return (
     <section id="projects" className="section-noise relative overflow-hidden bg-background py-24">
@@ -486,18 +665,30 @@ const Projects = () => {
       <div className="absolute bottom-20 right-0 w-96 h-96 bg-portfolio-primary/8 rounded-full blur-3xl" />
       <div className="container mx-auto px-6 relative">
         <div className="max-w-6xl mx-auto">
-          <ScrollReveal className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 section-header">
-              My <span className="gradient-text">Projects</span>
+          <ScrollReveal className="text-center mb-12">
+            <p className="section-kicker">
+              Case studies
+            </p>
+            <h2 className="section-header section-title mb-6">
+              Selected <span className="gradient-text">work</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Selected work that highlights AI automation, client solutions, and product-focused
-              builds with real production outcomes.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Four production systems, each with a write-up.
             </p>
           </ScrollReveal>
 
-          <ScrollReveal className="mb-12">
-            <div className="flex flex-wrap items-center justify-center gap-3">
+          <ScrollReveal className="mb-14">
+            <div className="grid gap-6 md:grid-cols-2">
+              {featuredProjects.map((project) => (
+                <FeaturedProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          </ScrollReveal>
+
+          {showAll ? (
+            <>
+          <ScrollReveal className="mb-10">
+            <div className="flex flex-wrap items-center justify-center gap-2">
               {tracks.map((track) => (
                 <motion.button
                   key={track}
@@ -517,11 +708,19 @@ const Projects = () => {
             </div>
           </ScrollReveal>
 
-          <div className="space-y-20">
+          <div className="space-y-12">
             {visibleProjects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
+            </>
+          ) : (
+            <div className="text-center">
+              <Button type="button" variant="outline" size="lg" onClick={() => setShowAll(true)}>
+                See more projects
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </section>

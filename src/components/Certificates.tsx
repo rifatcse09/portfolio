@@ -10,16 +10,19 @@ const Certificates = () => {
   ];
 
   return (
-    <section id="certificates" className="section-noise py-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(199 89% 48% / 0.04) 0%, hsl(173 80% 40% / 0.03) 100%)' }}>
+    <section id="certificates" className="section-noise relative overflow-hidden bg-gradient-to-b from-portfolio-cool/[0.04] to-portfolio-accent/[0.03] py-24 dark:from-portfolio-cool/10 dark:to-portfolio-accent/[0.06]">
       <div className="absolute top-0 right-0 w-80 h-80 bg-portfolio-accent/10 rounded-full blur-3xl" />
       <div className="container mx-auto px-6 relative">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 section-header">
-              My <span className="gradient-text">Certificates</span>
+            <p className="section-kicker">
+              Credentials
+            </p>
+            <h2 className="section-header section-title mb-6">
+              Certifications & <span className="gradient-text">Proof</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Here are some of the certifications I have achieved over the years.
+              Professional certifications that back the skills listed above.
             </p>
           </ScrollReveal>
 

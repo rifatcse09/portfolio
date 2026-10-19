@@ -11,7 +11,8 @@ export default {
 	prefix: "",
 	theme: {
 		fontFamily: {
-			sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+			sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+			display: ['Fraunces', 'Georgia', 'serif'],
 		},
 		container: {
 			center: true,

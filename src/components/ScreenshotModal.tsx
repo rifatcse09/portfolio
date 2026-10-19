@@ -14,6 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import BrowserFrame from "./BrowserFrame";
 
 type GalleryImage = { src: string; label: string };
 
@@ -64,7 +65,7 @@ export function ScreenshotModal({
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="max-w-[95vw] w-full max-h-[95vh] h-[90vh] p-4 flex flex-col gap-0 border-0 bg-background/95 backdrop-blur-xl shadow-2xl">
         <DialogHeader className="flex flex-row items-center justify-between gap-4 shrink-0 pb-2 border-b pr-10">
-          <DialogTitle className="text-lg font-semibold">{title} — Screenshots</DialogTitle>
+          <DialogTitle className="text-lg font-semibold">{title}: Screenshots</DialogTitle>
           <div className="flex items-center gap-1">
             <Button
               variant="outline"
@@ -110,14 +111,13 @@ export function ScreenshotModal({
               {images.map((img, i) => (
                 <CarouselItem key={i} className="pl-0 h-full">
                   <div className="flex flex-col h-full gap-2">
-                    <div className="flex-1 min-h-0 overflow-auto rounded-lg border bg-muted/30 flex items-start justify-center p-2">
-                      <img
-                        src={img.src}
-                        alt={img.label}
-                        className="max-w-full h-auto object-contain transition-transform duration-200"
+                    <div className="flex-1 min-h-0 overflow-auto rounded-lg flex items-start justify-center">
+                      <div
+                        className="w-full transition-transform duration-200"
                         style={{ transform: `scale(${zoom})`, transformOrigin: "center top" }}
-                        draggable={false}
-                      />
+                      >
+                        <BrowserFrame src={img.src} alt={img.label} imageClassName="max-h-[70vh] object-contain object-top" />
+                      </div>
                     </div>
                     <p className="text-sm text-muted-foreground text-center shrink-0 font-medium">
                       {img.label}

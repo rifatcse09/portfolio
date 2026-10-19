@@ -1,28 +1,293 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark" suppressHydrationWarning>
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NSSGRLG2P8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-NSSGRLG2P8");
+    </script>
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("theme");
+          if (theme === "light") {
+            document.documentElement.classList.remove("dark");
+          } else {
+            document.documentElement.classList.add("dark");
+            if (theme === "system") localStorage.setItem("theme", "dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <title>Rifatul Islam - Sr. Software Engineer Portfolio | mdrifatul.info</title>
-    <meta name="description" content="Senior Backend Engineer with 9+ years building scalable systems. Node.js, NestJS, Laravel, PostgreSQL. Microservices, event-driven architecture, AWS, Docker." />
-    <meta name="author" content="Rifatul Islam" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <title>MD Rifatul Islam | AI Backends, SaaS Integrations, RAG & Production Architecture</title>
+    <meta name="description" content="Hire MD Rifatul Islam for web, SaaS, ecommerce, mobile, automation, API, and AI products, from a raw brief or MVP through production. Top Rated on Upwork." />
+    <meta name="author" content="MD Rifatul Islam" />
+    <meta name="keywords" content="software engineer for hire, SaaS MVP, ecommerce development, mobile app developer, workflow automation, API integration, AI backend developer, RAG, Upwork developer" />
+    <link rel="canonical" href="https://rifatul.site/" />
+    <style>
+      #boot {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+      html.dark #boot { background: #070b16; color: #e2e8f0; }
+      html.boot-lock, html.boot-lock body { overflow: hidden; }
+      #boot.is-done { opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+      .boot-nav, .boot-hero { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+      .boot-nav { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
+      .boot-mark { font: 600 0.95rem/1 "Source Sans 3", system-ui, sans-serif; letter-spacing: -0.02em; }
+      .boot-pills { display: none; gap: 0.7rem; align-items: center; }
+      .boot-hero { display: grid; gap: 2rem; padding-top: 4.5rem; }
+      .boot-bar, .boot-portrait, .boot-pill {
+        display: block;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(15, 23, 42, 0.06) 25%, rgba(15, 23, 42, 0.14) 37%, rgba(15, 23, 42, 0.06) 63%);
+        background-size: 400% 100%;
+        animation: boot-shimmer 1.35s ease-in-out infinite;
+      }
+      html.dark .boot-bar, html.dark .boot-portrait, html.dark .boot-pill {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.06) 25%, rgba(255, 255, 255, 0.16) 37%, rgba(255, 255, 255, 0.06) 63%);
+        background-size: 400% 100%;
+      }
+      .boot-line { height: 0.7rem; width: 42%; margin-bottom: 0.85rem; }
+      .boot-title { height: 2.4rem; width: 88%; margin: 0.7rem 0; border-radius: 0.6rem; }
+      .boot-title.short { width: 70%; }
+      .boot-sub { height: 0.8rem; width: 64%; margin-top: 1.2rem; }
+      .boot-btn { height: 2.6rem; width: 9rem; margin-top: 1.6rem; }
+      .boot-pill { width: 5.5rem; height: 2rem; }
+      .boot-portrait { display: none; }
+      @keyframes boot-shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+      @media (min-width: 1024px) {
+        .boot-pills { display: flex; }
+        .boot-hero { grid-template-columns: 1.2fr 0.8fr; align-items: center; padding-top: 6rem; }
+        .boot-portrait { display: block; width: min(18rem, 100%); height: 18rem; margin-left: auto; border-radius: 1.25rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .boot-bar, .boot-portrait, .boot-pill { animation: none; }
+        #boot.is-done { transition: none; }
+      }
+    </style>
 
-    <meta property="og:title" content="Rifatul Islam - Sr. Software Engineer Portfolio" />
-    <meta property="og:description" content="Sr. Software Engineer with 11+ years experience in PHP, Laravel, Vue.js, and DevOps. Passionate about programming, cloud technologies, and building scalable applications." />
+    <meta property="og:title" content="MD Rifatul Islam | AI Backends, SaaS Integrations, RAG" />
+    <meta property="og:description" content="Web, SaaS, ecommerce, mobile, automation, APIs, and AI, from a raw brief or MVP through production. Top Rated on Upwork." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://rifatul.site/" />
+    <meta property="og:image" content="https://rifatul.site/og-image.png" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:title" content="MD Rifatul Islam | AI Backends & RAG" />
+    <meta name="twitter:description" content="Web, SaaS, ecommerce, mobile, automation, APIs, and AI through production. Upwork Top Rated." />
+    <meta name="twitter:image" content="https://rifatul.site/og-image.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://rifatul.site/#person",
+          "name": "MD Rifatul Islam",
+          "url": "https://rifatul.site/",
+          "email": "mailto:rifatul.dev@gmail.com",
+          "jobTitle": "Software Engineer",
+          "description": "Software engineer for web, SaaS, ecommerce, mobile, automation, API integration, and AI products, from a raw brief or MVP through production. Top Rated on Upwork, 12+ years, 100+ shipped systems.",
+          "image": "https://rifatul.site/og-image.png",
+          "sameAs": [
+            "https://www.upwork.com/freelancers/~019c2ac44b9c3c8ae5",
+            "https://www.fiverr.com/s/bdV1lNY",
+            "https://www.linkedin.com/in/rifatcse09/",
+            "https://github.com/rifatcse09",
+            "https://medium.com/@rifatcse09",
+            "https://www.facebook.com/"
+          ],
+          "knowsAbout": [
+            "AI Backends",
+            "SaaS Integrations",
+            "Retrieval Augmented Generation",
+            "AI Agents",
+            "Model Context Protocol",
+            "Production Architecture",
+            "Node.js",
+            "NestJS",
+            "PostgreSQL",
+            "API Integration",
+            "Web Development",
+            "SaaS Development",
+            "Ecommerce",
+            "Mobile Apps",
+            "Workflow Automation"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dhaka",
+            "addressCountry": "BD"
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://rifatul.site/#service",
+          "name": "MD Rifatul Islam — AI Backends and Production Architecture",
+          "url": "https://rifatul.site/",
+          "description": "Web, SaaS, ecommerce, mobile, automation, API integration, and AI products, from a raw brief or MVP through production.",
+          "provider": { "@id": "https://rifatul.site/#person" },
+          "areaServed": "Worldwide",
+          "serviceType": [
+            "AI Backend Development",
+            "SaaS Integrations",
+            "RAG and AI Agents",
+            "Production Architecture",
+            "API Development",
+            "Web Development",
+            "SaaS Development",
+            "Ecommerce Development",
+            "Mobile App Development",
+            "Workflow Automation",
+            "MVP to Production"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "AI Backends",
+                  "url": "https://rifatul.site/services/ai-backends"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "SaaS Integrations",
+                  "url": "https://rifatul.site/services/saas-integrations"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "RAG and Agents",
+                  "url": "https://rifatul.site/services/rag-and-agents"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://rifatul.site/#website",
+          "url": "https://rifatul.site/",
+          "name": "MD Rifatul Islam Portfolio",
+          "description": "Portfolio of MD Rifatul Islam: web, SaaS, ecommerce, mobile, automation, APIs, and AI products through production.",
+          "publisher": { "@id": "https://rifatul.site/#person" }
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="boot" aria-hidden="true">
+      <div class="boot-nav">
+        <span class="boot-mark">rifatul.site</span>
+        <span class="boot-pills">
+          <span class="boot-bar" style="width:3.2rem;height:0.7rem"></span>
+          <span class="boot-bar" style="width:2.4rem;height:0.7rem"></span>
+          <span class="boot-bar" style="width:3rem;height:0.7rem"></span>
+          <span class="boot-pill"></span>
+        </span>
+      </div>
+      <div class="boot-hero">
+        <div>
+          <span class="boot-bar boot-line"></span>
+          <span class="boot-bar boot-title"></span>
+          <span class="boot-bar boot-title short"></span>
+          <span class="boot-bar boot-sub"></span>
+          <span class="boot-bar boot-btn"></span>
+        </div>
+        <div class="boot-portrait"></div>
+      </div>
+    </div>
+    <script>
+      document.documentElement.classList.add("boot-lock");
+      window.__bootAt = Date.now();
+      window.setTimeout(function () {
+        var el = document.getElementById("boot");
+        if (!el) return;
+        document.documentElement.classList.remove("boot-lock");
+        el.remove();
+      }, 8000);
+    </script>
+    <div id="root">
+      <main>
+        <p>MD Rifatul Islam · Dhaka · remote · Available for new projects</p>
+        <h1>AI backends, SaaS integrations, and agents.</h1>
+        <p>Production systems for product teams. The work stays up after launch. Top Rated on Upwork. 12+ years. 100+ shipped systems.</p>
+        <p>Email <a href="mailto:rifatul.dev@gmail.com"><strong>rifatul.dev@gmail.com</strong></a></p>
+        <nav>
+          <a href="https://www.linkedin.com/in/rifatcse09/">LinkedIn</a>
+          <a href="https://www.upwork.com/freelancers/~019c2ac44b9c3c8ae5">Upwork</a>
+          <a href="https://www.facebook.com/">Facebook</a>
+          <a href="https://github.com/rifatcse09">GitHub</a>
+        </nav>
+        <h2>Projects I take</h2>
+        <ul>
+          <li>Web and SaaS from a brief through a first release.</li>
+          <li>MVP to production: auth, billing, data, and deploy.</li>
+          <li>Workflow automation inside the product.</li>
+          <li>API integration for payments, CRM, and messaging.</li>
+          <li>AI in a real workflow, using your data.</li>
+          <li>Ecommerce: catalog, orders, vendors, checkout.</li>
+          <li>Mobile apps on the same backend as the web product.</li>
+          <li>Joining an existing codebase for the next release.</li>
+        </ul>
+        <p>Email <a href="mailto:rifatul.dev@gmail.com"><strong>rifatul.dev@gmail.com</strong></a>. Reply within 24 hours.</p>
+        <h2>Services</h2>
+        <ul>
+          <li><a href="/services/ai-backends">AI backends</a> — model APIs, workers, and queues.</li>
+          <li><a href="/services/saas-integrations">SaaS integrations</a> — Stripe, CRM, Twilio, and webhooks.</li>
+          <li><a href="/services/rag-and-agents">RAG and agents</a> — retrieval and tool use grounded in your docs.</li>
+          <li><a href="/services/ai-backends#production">Production architecture</a> — auth, tenancy, Postgres, and cloud deploys.</li>
+        </ul>
+        <h2>Case studies</h2>
+        <ul>
+          <li><a href="/projects/bridgeopsone">BridgeOpsOne</a></li>
+          <li><a href="/projects/sms-platform">Multi-brand SMS platform</a></li>
+          <li><a href="/projects/docs-rag-mcp">Docs RAG MCP</a></li>
+          <li><a href="/projects/rewardsx">RewardsX</a></li>
+        </ul>
+      </main>
+    </div>
+    <noscript>
+      <main>
+        <h1>MD Rifatul Islam — AI backends, SaaS integrations, and agents</h1>
+        <p>Email <a href="mailto:rifatul.dev@gmail.com"><strong>rifatul.dev@gmail.com</strong></a>. Top Rated on Upwork. Based in Dhaka, working remotely.</p>
+        <ul>
+          <li><a href="/services/ai-backends">AI backends</a></li>
+          <li><a href="/services/saas-integrations">SaaS integrations</a></li>
+          <li><a href="/services/rag-and-agents">RAG and agents</a></li>
+          <li><a href="/projects/bridgeopsone">BridgeOpsOne case study</a></li>
+          <li><a href="/projects/sms-platform">SMS platform case study</a></li>
+          <li><a href="/projects/docs-rag-mcp">Docs RAG MCP case study</a></li>
+          <li><a href="/projects/rewardsx">RewardsX case study</a></li>
+        </ul>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
